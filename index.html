@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PortfolioForge — Build Your Dev Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="landing">
+  <div class="ring ring1"></div>
+  <div class="ring ring2"></div>
+  <div class="ring ring3"></div>
+  <div class="brand">
+    <div class="brand-mark">✦</div>
+    <div class="brand-name">Portfolio<b>Forge</b></div>
+  </div>
+  <div class="l-tag">Free · No signup · Instant download</div>
+  <h1 class="l-h1">Your portfolio,<br><em>beautifully built</em></h1>
+  <p class="l-sub">Fill in your details, connect your coding profiles, choose your style — get a stunning, deploy-ready portfolio in minutes.</p>
+  <button class="l-btn" onclick="showBuilder()">Start building &nbsp;✦</button>
+  <div class="l-feats">
+    <span class="l-feat">Live GitHub stats</span>
+    <span class="l-feat">Codeforces rating</span>
+    <span class="l-feat">CodeChef stars</span>
+    <span class="l-feat">HackerRank badge</span>
+    <span class="l-feat">Skill progress bars</span>
+    <span class="l-feat">Contact cards</span>
+    <span class="l-feat">Download HTML</span>
+    <span class="l-feat">Deploy anywhere free</span>
+  </div>
+</div>
+
+<!-- BUILDER -->
+<div id="builder">
+  <div class="progress-wrap"><div class="progress-bar" id="pbar"></div></div>
+  <div class="b-header">
+    <div class="brand" style="justify-content:center;margin-bottom:16px;">
+      <div class="brand-mark">✦</div>
+      <div class="brand-name">Portfolio<b>Forge</b></div>
+    </div>
+    <h2>Build your <em>portfolio</em></h2>
+    <p>Fill every section below, then hit Generate to download your portfolio.</p>
+  </div>
+
+  <!-- 01 PERSONAL -->
+  <div class="fsec open" id="s1">
+    <div class="fsec-head" onclick="tog('s1')">
+      <span class="fsec-num">01</span>
+      <span class="fsec-title">Personal Information</span>
+      <span class="fsec-desc">Name · Bio · Links</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div class="frow c2">
+        <div class="field"><label>Full Name *</label><input id="p-name" placeholder="example: Rahul Sharma" oninput="upd()"></div>
+        <div class="field"><label>Job Title *</label><input id="p-title" placeholder="example: Full-Stack Developer" oninput="upd()"></div>
+      </div>
+      <div class="frow c1">
+        <div class="field"><label>Hero Bio *</label><textarea id="p-bio" placeholder="Short 1–2 line intro shown on the hero section (example: I build intelligent systems and love clean code)..." oninput="upd()"></textarea></div>
+      </div>
+      <div class="frow c1">
+        <div class="field"><label>About Me (full paragraph)</label><textarea id="p-about" placeholder="Detailed paragraph for the About Me section — your background, interests, goals, what drives you..." oninput="upd()"></textarea></div>
+      </div>
+      <div class="frow c2">
+        <div class="field"><label>Location</label><input id="p-loc" placeholder="example: City, Country" oninput="upd()"></div>
+        <div class="field"><label>Email *</label><input id="p-email" placeholder="example: you@gmail.com" oninput="upd()"></div>
+      </div>
+      <div class="fdivider"><span>Social Links</span></div>
+      <div class="frow c2">
+        <div class="field"><label>GitHub URL</label><input id="p-gh" placeholder="github.com/username"></div>
+        <div class="field"><label>LinkedIn URL</label><input id="p-li" placeholder="linkedin.com/in/username"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 SKILLS -->
+  <div class="fsec" id="s2">
+    <div class="fsec-head" onclick="tog('s2')">
+      <span class="fsec-num">02</span>
+      <span class="fsec-title">Skills &amp; Technologies</span>
+      <span class="fsec-desc">Progress bars</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <p style="font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:18px;letter-spacing:.08em;line-height:1.8;">ADD SKILLS TO EACH CATEGORY BELOW. USE THE % FIELD FOR PROFICIENCY (OPTIONAL). EMPTY CATEGORIES ARE AUTOMATICALLY HIDDEN IN YOUR PORTFOLIO.</p>
+      <div id="skill-groups"></div>
+    </div>
+  </div>
+
+  <!-- 03 PROJECTS -->
+  <div class="fsec" id="s3">
+    <div class="fsec-head" onclick="tog('s3')">
+      <span class="fsec-num">03</span>
+      <span class="fsec-title">Projects</span>
+      <span class="fsec-desc">Cards with tech stack &amp; links</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div id="proj-list"></div>
+      <button class="add-btn" onclick="addProj()">+ Add project</button>
+    </div>
+  </div>
+
+  <!-- 04 EXPERIENCE -->
+  <div class="fsec" id="s4">
+    <div class="fsec-head" onclick="tog('s4')">
+      <span class="fsec-num">04</span>
+      <span class="fsec-title">Work Experience</span>
+      <span class="fsec-desc">Timeline · Company · Role</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div id="exp-list"></div>
+      <button class="add-btn" onclick="addExp()">+ Add experience</button>
+    </div>
+  </div>
+
+  <!-- 04b EDUCATION -->
+  <div class="fsec" id="s4b">
+    <div class="fsec-head" onclick="tog('s4b')">
+      <span class="fsec-num">04b</span>
+      <span class="fsec-title">Education</span>
+      <span class="fsec-desc">Degree · College · Year · Grade</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div id="edu-list"></div>
+      <button class="add-btn" onclick="addEdu()">+ Add education</button>
+    </div>
+  </div>
+
+  <!-- 05 CODING PROFILES -->
+  <div class="fsec" id="s5">
+    <div class="fsec-head" onclick="tog('s5')">
+      <span class="fsec-num">05</span>
+      <span class="fsec-title">Coding Stats</span>
+      <span class="fsec-desc">Stats card + Codolio link</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <p style="font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:18px;letter-spacing:.08em;line-height:1.9;">ENTER YOUR STATS MANUALLY. THESE SHOW ON YOUR PORTFOLIO AS A CODING STATS CARD. PASTE YOUR CODOLIO URL FOR THE "VIEW MORE" BUTTON.</p>
+      <div class="frow c2">
+        <div class="field"><label>Total Questions Solved</label><input id="stat-questions" placeholder="example: 450+"></div>
+        <div class="field"><label>Active Days</label><input id="stat-days" placeholder="example: 70+"></div>
+      </div>
+      <div class="frow c2">
+        <div class="field"><label>Total Contests</label><input id="stat-contests" placeholder="example: 20+"></div>
+        <div class="field"><label>HackerRank Badges</label><input id="stat-badges" placeholder="example: 6"></div>
+      </div>
+      <div class="frow c1">
+        <div class="field"><label>Codolio Profile URL</label><input id="codolio-url" placeholder="example: https://codolio.com/profile/johndoe"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 CONTACT & RESUME -->
+  <div class="fsec" id="s6">
+    <div class="fsec-head" onclick="tog('s6')">
+      <span class="fsec-num">06</span>
+      <span class="fsec-title">Contact &amp; Resume</span>
+      <span class="fsec-desc">Links · Resume PDF</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div class="ejs-info">
+        <p style="font-family:var(--fm);font-size:11px;color:var(--muted);line-height:1.8;letter-spacing:.05em;">YOUR CONTACT SECTION WILL SHOW A "GET IN TOUCH" CARD WITH ICON ROWS FOR EMAIL, LINKEDIN, GITHUB, AND TWITTER. EMPTY FIELDS ARE AUTOMATICALLY HIDDEN.</p>
+      </div>
+      <div class="fdivider"><span>Contact Links</span></div>
+      <div class="frow c1">
+        <div class="field"><label>Contact Tagline</label><input id="ct-tag" value="I'd love to hear from you" placeholder="example: I'd love to hear from you"></div>
+      </div>
+      <div class="frow c2">
+        <div class="field"><label>Email (shown as card)</label><input id="ct-email-show" placeholder="example: you@gmail.com"></div>
+        <div class="field"><label>LinkedIn Username</label><input id="ct-li-user" placeholder="example: john-doe"></div>
+      </div>
+      <div class="frow c2">
+        <div class="field"><label>GitHub Username</label><input id="ct-gh-user" placeholder="example: johndoe"></div>
+        <div class="field"><label>Twitter / X Username</label><input id="ct-tw-user" placeholder="example: johndoe"></div>
+      </div>
+      <div class="fdivider"><span>Resume PDF</span></div>
+      <div class="ejs-info" style="margin-bottom:14px;">
+        <p style="font-family:var(--fm);font-size:11px;color:var(--muted);line-height:1.8;letter-spacing:.05em;">UPLOAD YOUR RESUME PDF — IT WILL BE EMBEDDED DIRECTLY INTO THE PORTFOLIO HTML SO VISITORS CAN VIEW AND DOWNLOAD IT WITHOUT ANY EXTERNAL LINK.</p>
+      </div>
+      <div class="frow c2">
+        <div class="field">
+          <label>Upload Resume PDF</label>
+          <input type="file" id="ct-resume" accept=".pdf" style="padding:8px;cursor:pointer;" onchange="handleResume(this)">
+        </div>
+        <div class="field">
+          <label>Resume Button Label</label>
+          <input id="ct-resume-label" placeholder="Download Resume" value="Download Resume">
+        </div>
+      </div>
+      <div id="resume-status" style="font-family:var(--fm);font-size:11px;color:var(--accent);letter-spacing:.08em;margin-top:4px;display:none;">✦ Resume loaded and ready to embed</div>
+    </div>
+  </div>
+
+  <!-- 07 STYLE -->
+  <div class="fsec" id="s7">
+    <div class="fsec-head" onclick="tog('s7')">
+      <span class="fsec-num">07</span>
+      <span class="fsec-title">Style &amp; Theme</span>
+      <span class="fsec-desc">Colors · Fonts · Presets</span>
+      <span class="fsec-arrow">▾</span>
+    </div>
+    <div class="fsec-body">
+      <div class="fdivider"><span>Theme Presets</span></div>
+      <div class="theme-grid" id="tgrid"></div>
+      <div class="fdivider"><span>Custom Colors</span></div>
+      <div class="color-row">
+        <div class="color-item"><input type="color" id="c-bg" value="#07070a"><label>Background</label></div>
+        <div class="color-item"><input type="color" id="c-ac" value="#c8a96e"><label>Accent</label></div>
+        <div class="color-item"><input type="color" id="c-tx" value="#e8e6de"><label>Text</label></div>
+        <div class="color-item"><input type="color" id="c-cd" value="#0e0e14"><label>Card bg</label></div>
+      </div>
+      <div class="fdivider"><span>Font Family</span></div>
+      <div class="font-grid" id="fgrid">
+        <div class="fopt on" onclick="selFont(this,'Cormorant Garamond','serif')">
+          <div class="fn" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:20px;">Elegant Serif</div>
+          <div class="fl">Cormorant Garamond</div>
+        </div>
+        <div class="fopt" onclick="selFont(this,'Playfair Display','serif')">
+          <div class="fn" style="font-family:'Playfair Display',serif;font-size:19px;">Classic Display</div>
+          <div class="fl">Playfair Display</div>
+        </div>
+        <div class="fopt" onclick="selFont(this,'DM Sans','sans-serif')">
+          <div class="fn" style="font-family:'DM Sans',sans-serif;font-size:19px;font-weight:400;">Modern Sans</div>
+          <div class="fl">DM Sans</div>
+        </div>
+        <div class="fopt" onclick="selFont(this,'Lora','serif')">
+          <div class="fn" style="font-family:'Lora',serif;font-size:19px;">Literary Lora</div>
+          <div class="fl">Lora</div>
+        </div>
+        <div class="fopt" onclick="selFont(this,'Space Grotesk','sans-serif')">
+          <div class="fn" style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:500;">Tech Grotesk</div>
+          <div class="fl">Space Grotesk</div>
+        </div>
+        <div class="fopt" onclick="selFont(this,'Courier New','monospace')">
+          <div class="fn" style="font-family:'Courier New',monospace;font-size:17px;">Code Mono</div>
+          <div class="fl">Courier New</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERATE -->
+  <div class="gen-area">
+    <button class="gen-btn" onclick="generate()">✦ &nbsp; Generate &amp; Download Portfolio</button>
+    <p class="gen-note">
+      Downloads as a single HTML file · Open in any browser<br>
+      Deploy free: drag to <strong>netlify.com/drop</strong> · or push to GitHub Pages · or Vercel
+    </p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
